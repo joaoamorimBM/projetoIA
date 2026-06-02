@@ -142,6 +142,36 @@ def separar_x_y(data, attributes):
 
     return X_raw, y_raw, feature_attrs
 
+
+def analisar_dataset(relation, attributes, data):
+    print("[ETAPA] Analisando o dataset...")
+    print(f"Relation: {relation}")
+    print(f"Atributos: {len(attributes)}")
+    print(f"Instâncias: {len(data)}")
+    print("Atributos carregados:")
+    for attr in attributes:
+        print(f"  - {attr['name']} ({attr['type']})")
+    print("[INFO] Análise inicial concluída.")
+
+
+def mostrar_distribuicao_classes(y_raw):
+    print("[ETAPA] Mostrando distribuição das classes...")
+    from collections import Counter
+
+    contagem = Counter(y_raw)
+    total = len(y_raw)
+    for classe, freq in sorted(contagem.items(), key=lambda item: (-item[1], item[0])):
+        percentual = 100.0 * freq / total if total > 0 else 0.0
+        print(f"  {classe}: {freq} ({percentual:.2f}%)")
+
+
+def separar_x_y_cenario_c(data, attributes):
+    return separar_x_y(data, attributes)
+
+
+def preprocessar_fold_cenario_c(X_train_raw, X_test_raw, feature_attrs):
+    return preprocessar_fold(X_train_raw, X_test_raw, feature_attrs)
+
 def codificar_y(y_raw):
     # TEORIA (Label Encoding): Algoritmos matemáticos não entendem texto ("Action", "RPG"). 
     # Esta função converte textos em números inteiros (0, 1, 2...).

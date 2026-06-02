@@ -1,0 +1,36 @@
+AV3 - REGRESSÃO COM MLP MANUAL
+====================================================================================================
+Alvo da regressão: FPS
+Instâncias usadas: 24624
+Preditores usados: 43
+Configurações avaliadas: 5
+
+Tabela comparativa:
+----------------------------------------------------------------------------------------------------
+Configuração                                                            MSE             RMSE              MAE               R2        R2 Ajust.      T.Treino(s)       T.Teste(s)
+------------------------------------------------------------------------------------------------------------------------------------------------------
+MLP hidden=[16] act=relu lr=0.001 epochs=80                2050.6593 ± 36.4996 45.2824 ± 0.4035 34.5546 ± 0.2074  0.3121 ± 0.0152  0.3060 ± 0.0153    2.470 ± 0.017  0.0012 ± 0.0001
+MLP hidden=[16, 8] act=tanh lr=0.001 epochs=80             2072.7287 ± 31.9810 45.5259 ± 0.3521 34.5950 ± 0.2306  0.3048 ± 0.0090  0.2986 ± 0.0091    4.119 ± 0.014  0.0045 ± 0.0003
+MLP hidden=[16, 8] act=relu lr=0.001 epochs=80             2076.2284 ± 40.3726 45.5635 ± 0.4462 34.7165 ± 0.2646  0.3036 ± 0.0099  0.2975 ± 0.0099    3.356 ± 0.072  0.0018 ± 0.0002
+MLP hidden=[32, 16] act=relu lr=0.0005 epochs=120          2076.3330 ± 23.8914 45.5660 ± 0.2628 34.6918 ± 0.1754  0.3035 ± 0.0075  0.2974 ± 0.0076    6.074 ± 0.034  0.0024 ± 0.0001
+MLP hidden=[8] act=relu lr=0.001 epochs=80                 2093.7636 ± 34.9816 45.7561 ± 0.3839 34.8498 ± 0.3562  0.2977 ± 0.0124  0.2915 ± 0.0125    2.229 ± 0.110  0.0012 ± 0.0003
+
+MELHOR CONFIGURAÇÃO
+====================================================================================================
+Melhor configuração pelo menor RMSE médio: MLP hidden=[16] act=relu lr=0.001 epochs=80
+RMSE médio: 45.2824 ± 0.4035
+MAE médio: 34.5546 ± 0.2074
+R2 médio: 0.3121 ± 0.0152
+R2 ajustado médio: 0.3060 ± 0.0153
+Tempo médio de treino: 2.470s
+Tempo médio de teste: 0.0012s
+
+INTERPRETAÇÃO PARA OS SLIDES
+====================================================================================================
+1. Foram avaliadas diferentes topologias de MLP, variando camadas ocultas, neurônios, ativação, learning rate e épocas.
+2. A saída da rede é linear, pois o problema é de regressão e o objetivo é prever um valor numérico contínuo.
+3. O RMSE e o MAE indicam o tamanho médio do erro de previsão na escala original do alvo.
+4. O R2 mostra quanto da variação do alvo é explicada pelo modelo; valores maiores indicam melhor ajuste.
+5. O R2 ajustado penaliza modelos com muitos preditores, ajudando a avaliar generalização.
+6. Arquiteturas maiores podem reduzir erro, mas normalmente aumentam custo computacional.
+7. A melhor escolha final deve equilibrar erro baixo, bom R2/R2 ajustado e tempo de execução aceitável.
